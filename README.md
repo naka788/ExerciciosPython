@@ -1,2 +1,2 @@
-# ExerciciosPythonAula2
+# ExerciciosPython
 estudo sobre python
