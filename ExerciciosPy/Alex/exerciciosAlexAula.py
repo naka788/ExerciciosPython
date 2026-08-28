@@ -17,3 +17,14 @@ conversão = QntMoedaEstrangeira * cotMoedaEstrangeira
 print(f'{(QntMoedaEstrangeira):.2f} é equivalente a {(conversão):.2f}')
 
 '''
+
+'''
+Exercicio 5
+
+custoFabricaSemTax = float(input('custo fabrica >> '))
+custoFabricaComTax = custoFabricaSemTax + (custoFabricaSemTax * 0.28)
+impostos = custoFabricaComTax * 0.45
+custoConsumidor = custoFabricaComTax + impostos
+print(f'Custo total: {(custoConsumidor):.2f}')
+
+'''
