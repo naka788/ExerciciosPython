@@ -37,28 +37,23 @@ pessoasMaior50 = 0
 pessoasEntre10e20 = 0
 soma10e20 = 0
 pessoasMenor40 = 0
-for i in range(0,5+1):
+for i in range(0,30):
     idade = int(input('idade: '))
-    if idade >= 10 and idade <= 20:
-        pessoasEntre10e20 += 1
-        altura = int(input('altura (cm): '))
-        soma10e20 += altura
-        peso = float(input('peso em kg: '))
-        if peso < 40:
-            pessoasMenor40 += 1
-    elif idade > 50:
-        pessoasMaior50 += 1
-    
     altura = int(input('altura (cm): '))
     peso = float(input('peso em kg: '))
     if peso < 40:
         pessoasMenor40 += 1
+    if idade >= 10 and idade <= 20:
+        pessoasEntre10e20 += 1
+        soma10e20 += altura
+    elif idade > 50:
+        pessoasMaior50 += 1
+    
+    
+    
 
 mediaAltura = soma10e20 / pessoasEntre10e20
 percPessoasMenor40 = (pessoasMenor40 / 30) * 100
 print(f'a) {pessoasMaior50}')
 print(f'b) {mediaAltura}')
-print(f'c) {percPessoasMenor40}%')
-"""
-esta errado, arrumar
-"""
+print(f'c) {percPessoasMenor40:.2f}%')
