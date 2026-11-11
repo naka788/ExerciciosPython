@@ -1,14 +1,49 @@
 def cadastrarMulta(placa, valor):
     multas[placa] = valor
     return f'Uma multa no valor de {valor} foi atribuida a nova placa: {placa}'
+
 def buscaMultaPlaca(placa, multas):
-    return f'O valor referente a multa da placa {placa} é igual a R${multas.get(placa):;}'
+    busca = f'A placa não existe no sistema'
+    for multa in multas:
+        valor = multas[multa]
+        if multa == placa:
+            busca = f'A placa {placa} tem uma multa de R${valor:.2f}'
+    return busca
+
 def listaMulta(multas):
-    pass
+    for multa in multas:
+        valor = multas[multa]
+        print(f'{multa}: {valor:.2f}')
+
 def placaMultaMaxMin(multas):
-    pass
+    max = 0
+    min = 9999999
+    multaMin = None
+    multaMax = None
+
+    for multa in multas:
+        valor = multas[multa]
+        
+        if valor >= max:
+            max = valor
+            multaMax = multa
+
+        if valor <= min:
+            min = valor
+            multaMin = multa
+    return max, multaMax, min, multaMin
+        
+
 def calcMediaMultas(multas):
-    pass
+    cont = 0
+    soma = 0
+    for multa in multas:
+        valor = multas[multa]
+        cont += 1
+        soma += valor
+    media = soma / cont
+    return media
+
 
 multas = {
 'ABC1234': 150.50,
@@ -35,15 +70,14 @@ while True:
     elif menu == 2:
         placa = str(input('Qual a placa do carro: '))
         print(buscaMultaPlaca(placa, multas))
-    """
-    elif menu == 3:
-        continue
-    elif menu == 4:
-        continue
-    elif menu == 5:
-        continue
     
+    elif menu == 3:
+        listaMulta(multas)
+    elif menu == 4:
+        max, multaMax, min, multaMin = placaMultaMaxMin(multas)
+        print(f'Max - {multaMax}: {max}\nMin - {multaMin}: {min}')
+    elif menu == 5:
+        print(f'O valor médio das multas é: R${calcMediaMultas(multas):.2f}')
     elif menu == 6:
         break
-        """
     
