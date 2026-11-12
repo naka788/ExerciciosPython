@@ -109,13 +109,38 @@ def cadastrarProd(produtos, nome, preco, qnt, cod):
     return f'O produto {nome}, codigo {cod}, foi cadastrado '
 
 def buscarProdCod(cod, produtos):
-    pass
+    if cod in produtos:
+        nome = produtos[cod]["nome"]
+        preco = produtos[cod]["preco"]
+        qnt = produtos[cod]["quantidade"]
+        resposta = f'nome: {nome}\npreco: R${preco:.2f}\nquantidade: {qnt}'
+    else:
+        resposta = f'Codigo informado não existe'
+    return resposta
+
 def venda(cod, qnt, produtos):
-    pass
+    if cod not in produtos:
+        resposta = f'Codigo informado não existe'
+    elif produtos[cod]["quantidade"] < qnt:
+        resposta = f'O produto não tem a quantidade desejada em estoque para a venda\nQuantidade do produto {produtos[cod]["nome"]}: {produtos[cod]["quantidade"]}'
+    else:
+        produtos[cod]["quantidade"] = produtos[cod]["quantidade"] - qnt
+        resposta = f'Venda do produto {produtos[cod]["nome"]} realizada!'
+
+    return resposta
 def reposicao(cod, qnt, produtos):
-    pass
+    if cod in produtos:
+        produtos[cod]["quantidade"] += qnt
+        resposta = f'Reposição registrada!\nNova quantidade do produto {produtos[cod]["nome"]}: {produtos[cod]["quantidade"]}'
+    else:
+        resposta = f'Codigo informado não existe'
+    return resposta
 def listarProd(produtos):
-    pass
+    for produto in produtos:
+        nome = produtos[produto]["nome"]
+        preco = produtos[produto]["preco"]
+        qnt = produtos[produto]["quantidade"]
+        print(f'{produto} - nome: {nome} - preco: R${preco:.2f} - quantidade {qnt}')
 def prodSemEstq(produtos):
     pass
 def prodMaiorVal(produtos):
@@ -139,22 +164,29 @@ while True:
         nome = str(input('Qual o nome do produto: '))
         preco = float(input('Qual o preço: '))
         qnt = int(input('Qual a quantidade disponivel: '))
-        cod = str(input('Informe o codigo unico para cadastro no formato PXXX (Ex. P001, P002, P010, P100, Etc): '))
+        cod = str(input('Informe o codigo unico para cadastro do produto no formato PXXX (Ex. P001, P002, P010, P100, Etc): '))
         while cod in produtos:
             print(f'O codigo informado já esta sendo utilizado, por favor, tente outro\nCodigos ja sendo usados:')
             for codigo in produtos:
                 print(f'{codigo}')
-            cod = str(input('Informe o codigo unico para cadastro no formato PXXX (Ex. P001, P002, P010, P100, Etc): '))
+            cod = str(input('Informe o codigo unico para cadastro do produto no formato PXXX (Ex. P001, P002, P010, P100, Etc): '))
         print(cadastrarProd(produtos,nome,preco,qnt,cod))
             
     elif menu == 2:
-        continue
+        cod = str(input('Informe o codigo do produto para a busca no formato PXXX (Ex. P001, P002, P010, P100, Etc): '))
+        print(buscarProdCod(cod, produtos))
+
+
     elif menu == 3:
-        continue
+        cod = str(input('Informe o codigo para a venda do produto no formato PXXX (Ex. P001, P002, P010, P100, Etc): '))
+        qnt = int(input('Qual a quantidade do produto desejada para a venda: '))
+        print(venda(cod, qnt, produtos))
     elif menu == 4:
-        continue
+         cod = str(input('Informe o codigo para a reposição do produto no formato PXXX (Ex. P001, P002, P010, P100, Etc): '))
+         qnt = int(input('Qual a quantidade do produto foi recebida: '))
+         print(reposicao(cod, qnt, produtos))
     elif menu == 5:
-        continue
+        listarProd(produtos)
     elif menu == 6:
         continue
     elif menu == 7:
