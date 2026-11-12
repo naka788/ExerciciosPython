@@ -1,3 +1,16 @@
+"""
+1 - Faça um programa em Python que apresente o menu abaixo:
+1 – Cadastrar multa (placa, valor)
+2 – Buscar multa pela placa
+3 – Listar todas as multas
+4 – Exibir placa/multa referente ao valor mais alto e mais baixo
+5 – Calcular o valor médio de todas as multas
+6 – Sair
+Utilize obrigatoriamente um dicionário para armazenar os dados e implemente uma função para cada item do menu.
+O dicionário deve ser inicializado com os valores abaixo:
+"""
+"""
+
 def cadastrarMulta(placa, valor):
     multas[placa] = valor
     return f'Uma multa no valor de {valor} foi atribuida a nova placa: {placa}'
@@ -80,4 +93,73 @@ while True:
         print(f'O valor médio das multas é: R${calcMediaMultas(multas):.2f}')
     elif menu == 6:
         break
-    
+
+    """
+
+"""
+2 - Sistema de controle de estoque
+
+"""
+def cadastrarProd(produtos, nome, preco, qnt, cod):
+    produtos[cod] = {
+        "nome": nome,
+        "preco": preco,
+        "quantidade": qnt
+    }
+    return f'O produto {nome}, codigo {cod}, foi cadastrado '
+
+def buscarProdCod(cod, produtos):
+    pass
+def venda(cod, qnt, produtos):
+    pass
+def reposicao(cod, qnt, produtos):
+    pass
+def listarProd(produtos):
+    pass
+def prodSemEstq(produtos):
+    pass
+def prodMaiorVal(produtos):
+    pass
+def valorTotalEstq(produtos):
+    pass
+
+
+
+produtos = {
+"P001": {"nome": "Teclado", "preco": 120.00, "quantidade": 8},
+"P002": {"nome": "Mouse", "preco": 75.50, "quantidade": 15},
+"P003": {"nome": "Monitor", "preco": 950.00, "quantidade": 4},
+"P004": {"nome": "Webcam", "preco": 210.00, "quantidade": 0},
+"P005": {"nome": "Headset", "preco": 180.00, "quantidade": 6}
+}
+while True:
+    menu = int(input('1 - Cadastrar produto\n2 - Buscar produto pelo código\n3 - Registrar venda\n4 - Repor estoque\n5 - Listar produtos\n6 - Exibir produtos sem estoque\n7 - Exibir produto de maior valor em estoque\n8 - Exibir valor total do estoque\n9 – Sair\nQual opção você quer: '))
+
+    if menu == 1:
+        nome = str(input('Qual o nome do produto: '))
+        preco = float(input('Qual o preço: '))
+        qnt = int(input('Qual a quantidade disponivel: '))
+        cod = str(input('Informe o codigo unico para cadastro no formato PXXX (Ex. P001, P002, P010, P100, Etc): '))
+        while cod in produtos:
+            print(f'O codigo informado já esta sendo utilizado, por favor, tente outro\nCodigos ja sendo usados:')
+            for codigo in produtos:
+                print(f'{codigo}')
+            cod = str(input('Informe o codigo unico para cadastro no formato PXXX (Ex. P001, P002, P010, P100, Etc): '))
+        print(cadastrarProd(produtos,nome,preco,qnt,cod))
+            
+    elif menu == 2:
+        continue
+    elif menu == 3:
+        continue
+    elif menu == 4:
+        continue
+    elif menu == 5:
+        continue
+    elif menu == 6:
+        continue
+    elif menu == 7:
+        continue
+    elif menu == 8:
+        continue
+    elif menu == 9:
+        continue
