@@ -142,11 +142,33 @@ def listarProd(produtos):
         qnt = produtos[produto]["quantidade"]
         print(f'{produto} - nome: {nome} - preco: R${preco:.2f} - quantidade {qnt}')
 def prodSemEstq(produtos):
-    pass
+    for produto in produtos:
+        nome = produtos[produto]["nome"]
+        qnt = produtos[produto]["quantidade"]
+        if qnt == 0:
+            print(f'{nome}\n')
 def prodMaiorVal(produtos):
-    pass
+    nomeMaior = None
+    maiorVal = 0
+    for produto in produtos:
+        valor = produtos[produto]["preco"]
+        qnt = produtos[produto]["quantidade"]
+
+        if valor * qnt > maiorVal:
+            maiorVal = valor * qnt
+            nomeMaior = produtos[produto]["nome"]
+    return nomeMaior
+
 def valorTotalEstq(produtos):
-    pass
+    valorTotal = 0
+    for produto in produtos:
+        nome = produtos[produto]["nome"]
+        preco = produtos[produto]["preco"]
+        qnt = produtos[produto]["quantidade"]
+        valorTotal += preco * qnt
+        print(f'{nome}: {preco:.2f} x {qnt} = R${preco*qnt:.2f}\n')
+    print(f'Valor total do estoque: R${valorTotal:.2f}')
+
 
 
 
@@ -188,10 +210,11 @@ while True:
     elif menu == 5:
         listarProd(produtos)
     elif menu == 6:
-        continue
+        print(f'{prodSemEstq(produtos)}')
     elif menu == 7:
-        continue
+        print(f'Produto de maior valor: {prodMaiorVal(produtos)}')
     elif menu == 8:
-        continue
+        print('Valor dos produtos:\n')
+        valorTotalEstq(produtos)
     elif menu == 9:
-        continue
+        break
